@@ -1,10 +1,22 @@
+##############################################################
+# Autoria: Felipe Beskow <felipeBeskow@outlook.com>
+# Algoritmo: Naïves-Bayes
+# Disciplina: Sistemas Inteligentes Aplicados
+# Professor: Arnaldo Candido Junior
+# Repositório: https://github.com/felipebeskow/naiveBayes
+# Por favor manter os créditos
+##############################################################
+
+#importe para permitir a entrada de paramêtros
 import sys
 
+#inicialização de variáveis globais
 cabecalho = []
 dados = []
 questoes = []
 matriz = []
 
+#função para limpar string
 def filterLinha(l):
   li = l.replace("\n", "").split(" ")
   l = []
@@ -13,25 +25,13 @@ def filterLinha(l):
       l.append(elem)
   return l
 
-def naiveBayes1(questao):
-  count = [[0] * (len(dados[0])+1)] * 2;
-  classA = dados[0][-1]
-  print(classA, count)
-  for i in range(len(dados)):
-    if (classA == dados[i][-1]):# and (questao[0] == dados[i][0]) :
-      print(count[0])
-      count[0][1] = count[0][1] + 1
-    if (classA != dados[i][-1]):# and (questao[0] == dados[i][0]) :
-      print(count[1])
-      count[1][-1] = count[1][-1] + 1
-  print(count)
-  #return
-
+#cereja do bolo - implementação do algoritmo
 def naiveBayes(questao):
-  matriz = []
   atributoA = []
   atributoB = []
+
   classeA = dados[0][-1]
+
   for k in range(len(questao)-1):
     A = 0
     B = 0
@@ -42,17 +42,53 @@ def naiveBayes(questao):
         B += 1
     atributoA.append(A)
     atributoB.append(B)
-  matriz.append(atributoA)
-  matriz.append(atributoB)
-
   
+  A=0
+  B=0
+  for i in range(len(dados)):
+    if(classeA == dados[i][-1]) :
+      A += 1
+    else :
+      classeB = dados[i][-1]
+      B += 1
+  atributoA.append(A)
+  atributoB.append(B)
 
-  print(matriz)
+  A=atributoA[-1]/len(dados)
+  B=atributoB[-1]/len(dados)
+  for i in range(len(questao)-1):
+    A *= atributoA[i]/atributoA[-1]
+    B *= atributoB[i]/atributoB[-1]
 
+  questao[-1] = classeA
+  questao.append(A)
+  questao.append(classeB)
+  questao.append(B)
+  return questao
+
+#chamada do algoritmo para cada questão
 def VerificarQuestoes():
   for questao in questoes:
-    naiveBayes(questao)
-  #return
+    matriz.append(naiveBayes(questao))
+
+#printar resultado
+def FormataSaida():
+  for linha in matriz:
+    outPut = ""
+    for i in range(len(cabecalho)-1):
+      outPut += f'{cabecalho[i]}={linha[i]}'
+      if i < len(cabecalho)-2:
+        outPut += ', '
+    outPut += " ==> "
+    if(linha[-3]>linha[-1]):
+      outPut += cabecalho[-1] + "=" + linha[-4]
+    else:
+      outPut += cabecalho[-1] + "=" + linha[-2]
+    outPut += f"\n\t{linha[-4]}={linha[-3]}; {linha[-2]}={linha[-1]}"
+    print(outPut)
+
+#implementação da "main"
+##MAIN##
 
 arquivo = open(sys.argv[1], 'r')
 
@@ -64,15 +100,10 @@ while(linha != "---"):
   dados.append(filterLinha(linha))
   linha = arquivo.readline().replace("\n", "")
 
-
 for linha in arquivo:
   questoes.append(filterLinha(linha))
 
-print(cabecalho)
-print("---")
-print(dados)
-print("---")
-print(questoes)
+arquivo.close()
 
-print("\n====\n")
 VerificarQuestoes()
+FormataSaida()
