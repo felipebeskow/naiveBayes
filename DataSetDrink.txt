@@ -1,0 +1,27 @@
+FavoriteColor	FavoriteMusicGenre	FavoriteBeverage	FavoriteSoftDrink	Gender
+Cool	Rock	Vodka	7UP/Sprite	F
+Neutral	Hip_hop	Vodka	Coca_Cola/Pepsi	F
+Warm	Rock	Wine	Coca_Cola/Pepsi	F
+Warm	Folk/Traditional	Whiskey	Fanta	F
+Cool	Rock	Vodka	Coca_Cola/Pepsi	F
+Warm	Jazz/Blues	Doesn't_drink	Fanta	F
+Cool	Pop	Beer	Coca_Cola/Pepsi	F
+Warm	Pop	Whiskey	Fanta	F
+Warm	Rock	Other	7UP/Sprite	F
+Neutral	Pop	Wine	Coca_Cola/Pepsi	F
+Warm	R&B_and_soul	Wine	Other	M
+Neutral	Hip_hop	Beer	7UP/Sprite	M
+Warm	Electronic	Other	Coca_Cola/Pepsi	M
+Neutral	Rock	Doesn't_drink	Coca_Cola/Pepsi	M
+Cool	Pop	Other	Fanta	M
+Cool	Pop	Whiskey	Fanta	M
+Warm	Rock	Vodka	7UP/Sprite	M
+Cool	Rock	Vodka	Coca_Cola/Pepsi	M
+Neutral	Pop	Doesn't_drink	7UP/Sprite	M
+Warm	R&B_and_soul	Doesn't_drink	Coca_Cola/Pepsi	M
+---				
+Cool	Pop	Other	7UP/Sprite	F
+Warm	Pop	Wine	7UP/Sprite	F
+Cool	R&B_and_soul	Whiskey	7UP/Sprite	M
+Cool	Rock	Doesn't_drink	Other	M
+Warm	Hip_hop	Beer	Coca_Cola/Pepsi	M

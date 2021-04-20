@@ -18,7 +18,7 @@ matriz = []
 
 #função para limpar string
 def filterLinha(l):
-  li = l.replace("\n", "").split(" ")
+  li = l.replace("\n", "").replace("\t", " ").split(" ")
   l = []
   for elem in li:
     if elem:
@@ -94,11 +94,11 @@ arquivo = open(sys.argv[1], 'r')
 
 cabecalho = filterLinha(arquivo.readline())
 
-linha = arquivo.readline().replace("\n", "")
+linha = arquivo.readline().replace("\n", "").replace("\t", " ")
 
-while(linha != "---"):
+while("---" not in linha):
   dados.append(filterLinha(linha))
-  linha = arquivo.readline().replace("\n", "")
+  linha = arquivo.readline().replace("\n", "").replace("\t", " ")
 
 for linha in arquivo:
   questoes.append(filterLinha(linha))
